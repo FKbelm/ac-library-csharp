@@ -3,6 +3,12 @@ using System.Linq;
 using FluentAssertions;
 using MersenneTwister;
 using Xunit;
+#if NET6_0_OR_GREATER
+using MfGraphInt = AtCoder.MfGraph<int>;
+using MfGraphUInt = AtCoder.MfGraph<uint>;
+#else
+using MfGraphUInt = AtCoder.MfGraph<uint, AtCoder.UIntOperator>;
+#endif
 
 namespace AtCoder
 {
@@ -145,21 +151,21 @@ namespace AtCoder
         [Fact]
         public void BoundUint()
         {
-            MfGraph<uint, UIntOperator>.Edge e;
+            MfGraphUInt.Edge e;
 
             const uint INF = uint.MaxValue;
-            var g = new MfGraph<uint, UIntOperator>(3);
+            var g = new MfGraphUInt(3);
             g.AddEdge(0, 1, INF).Should().Be(0);
             g.AddEdge(1, 0, INF).Should().Be(1);
             g.AddEdge(0, 2, INF).Should().Be(2);
 
             g.Flow(0, 2).Should().Be(INF);
 
-            e = new MfGraph<uint, UIntOperator>.Edge(0, 1, INF, 0);
+            e = new MfGraphUInt.Edge(0, 1, INF, 0);
             g.GetEdge(0).Should().Be(e);
-            e = new MfGraph<uint, UIntOperator>.Edge(1, 0, INF, 0);
+            e = new MfGraphUInt.Edge(1, 0, INF, 0);
             g.GetEdge(1).Should().Be(e);
-            e = new MfGraph<uint, UIntOperator>.Edge(0, 2, INF, INF);
+            e = new MfGraphUInt.Edge(0, 2, INF, INF);
             g.GetEdge(2).Should().Be(e);
         }
         [Fact]
@@ -327,8 +333,8 @@ namespace AtCoder
 
             writer.WriteLine(g.Flow(s, t));
 
-            MfGraph<int, IntOperator>.Edge[] edges = g.Edges();
-            foreach (MfGraph<int, IntOperator>.Edge e in edges)
+            MfGraphInt.Edge[] edges = g.Edges();
+            foreach (MfGraphInt.Edge e in edges)
             {
                 if (e.From == s || e.To == t || e.Flow == 0) continue;
                 int i0 = e.From / m, j0 = e.From % m;

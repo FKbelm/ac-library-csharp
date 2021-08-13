@@ -24,6 +24,10 @@ namespace AtCoder
     public readonly struct DynamicModID1 : IDynamicModID { }
     public readonly struct DynamicModID2 : IDynamicModID { }
 
+
+#if GENERIC_MATH
+    [System.Obsolete(Internal.Constants.UseGenericMath)]
+#endif
     public readonly struct DynamicModIntOperator<T> : IArithmeticOperator<DynamicModInt<T>> where T : struct
     {
         public DynamicModInt<T> MultiplyIdentity => DynamicModInt<T>.Raw(1);
@@ -65,8 +69,27 @@ namespace AtCoder
     /// }
     /// </code>
     /// </example>
-    public readonly struct DynamicModInt<T> : IEquatable<DynamicModInt<T>> where T : struct
+    public readonly struct DynamicModInt<T> : IEquatable<DynamicModInt<T>>
+#if NET6_0_OR_GREATER
+        , IAdditionOperators<DynamicModInt<T>, DynamicModInt<T>, DynamicModInt<T>>,
+        IAdditiveIdentity<DynamicModInt<T>, DynamicModInt<T>>,
+        IEqualityOperators<DynamicModInt<T>, DynamicModInt<T>>,
+        IDecrementOperators<DynamicModInt<T>>,
+        IDivisionOperators<DynamicModInt<T>, DynamicModInt<T>, DynamicModInt<T>>,
+        IIncrementOperators<DynamicModInt<T>>,
+        IMultiplicativeIdentity<DynamicModInt<T>, DynamicModInt<T>>,
+        IMultiplyOperators<DynamicModInt<T>, DynamicModInt<T>, DynamicModInt<T>>,
+        ISubtractionOperators<DynamicModInt<T>, DynamicModInt<T>, DynamicModInt<T>>,
+        IUnaryNegationOperators<DynamicModInt<T>, DynamicModInt<T>>,
+        IUnaryPlusOperators<DynamicModInt<T>, DynamicModInt<T>>
+#endif
+        where T : struct
     {
+#if NET6_0_OR_GREATER
+        static DynamicModInt<T> IMultiplicativeIdentity<DynamicModInt<T>, DynamicModInt<T>>.MultiplicativeIdentity => new DynamicModInt<T>(1u);
+        static DynamicModInt<T> IAdditiveIdentity<DynamicModInt<T>, DynamicModInt<T>>.AdditiveIdentity => default;
+#endif
+
         internal readonly uint _v;
         internal static Barrett bt;
 

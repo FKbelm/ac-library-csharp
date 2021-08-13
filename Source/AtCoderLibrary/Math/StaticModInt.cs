@@ -43,6 +43,9 @@ namespace AtCoder
         public bool IsPrime => true;
     }
 
+#if GENERIC_MATH
+    [System.Obsolete(Internal.Constants.UseGenericMath)]
+#endif
     public readonly struct StaticModIntOperator<T> : IArithmeticOperator<StaticModInt<T>>
         where T : struct, IStaticMod
     {
@@ -81,8 +84,27 @@ namespace AtCoder
     /// }
     /// </code>
     /// </example>
-    public readonly struct StaticModInt<T> : IEquatable<StaticModInt<T>> where T : struct, IStaticMod
+    public readonly struct StaticModInt<T> : IEquatable<StaticModInt<T>>
+#if NET6_0_OR_GREATER
+        , IAdditionOperators<StaticModInt<T>, StaticModInt<T>, StaticModInt<T>>,
+        IAdditiveIdentity<StaticModInt<T>, StaticModInt<T>>,
+        IEqualityOperators<StaticModInt<T>, StaticModInt<T>>,
+        IDecrementOperators<StaticModInt<T>>,
+        IDivisionOperators<StaticModInt<T>, StaticModInt<T>, StaticModInt<T>>,
+        IIncrementOperators<StaticModInt<T>>,
+        IMultiplicativeIdentity<StaticModInt<T>, StaticModInt<T>>, 
+        IMultiplyOperators<StaticModInt<T>, StaticModInt<T>, StaticModInt<T>>,
+        ISubtractionOperators<StaticModInt<T>, StaticModInt<T>, StaticModInt<T>>,
+        IUnaryNegationOperators<StaticModInt<T>, StaticModInt<T>>,
+        IUnaryPlusOperators<StaticModInt<T>, StaticModInt<T>>
+#endif
+        where T : struct, IStaticMod
     {
+#if NET6_0_OR_GREATER
+        static StaticModInt<T> IMultiplicativeIdentity<StaticModInt<T>, StaticModInt<T>>.MultiplicativeIdentity => new StaticModInt<T>(1u);
+        static StaticModInt<T> IAdditiveIdentity<StaticModInt<T>, StaticModInt<T>>.AdditiveIdentity => default;
+#endif
+
         internal readonly uint _v;
         private static readonly T op = default;
 

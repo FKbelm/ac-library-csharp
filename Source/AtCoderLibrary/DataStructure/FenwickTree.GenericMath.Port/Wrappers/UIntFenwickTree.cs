@@ -13,4 +13,5 @@
     /// <para>を O(log⁡N) で求めることが出来るデータ構造です。</para>
     /// </summary>
     public class UIntFenwickTree : FenwickTree<uint, UIntOperator> { public UIntFenwickTree(int n) : base(n) { } }
+
 }

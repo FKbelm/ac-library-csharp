@@ -1,6 +1,10 @@
 ﻿using FluentAssertions;
 using MersenneTwister;
 using Xunit;
+#if NET6_0_OR_GREATER
+using MfGraphInt = AtCoder.MfGraph<int>;
+using McfGraphInt = AtCoder.McfGraph<int, int>;
+#endif
 
 namespace AtCoder
 {

@@ -37,8 +37,10 @@ namespace AtCoder.Embedding
             const string VERSION =
 #if NETCOREAPP3_0
                           "7.3"
-#else
+#elif NETCOREAPP3_1
                           "8.0"
+#else
+                          "preview"
 #endif
                 ;
             var embedded = await EmbeddedData.LoadFromAssembly(typeof(Mod1000000007));

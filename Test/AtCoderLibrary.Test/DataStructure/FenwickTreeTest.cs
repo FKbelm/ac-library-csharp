@@ -2,6 +2,11 @@
 using System.Linq;
 using FluentAssertions;
 using Xunit;
+#if NET6_0_OR_GREATER
+using IntFenwickTree = AtCoder.FenwickTree<int>;
+using LongFenwickTree = AtCoder.FenwickTree<long>;
+using ULongFenwickTree = AtCoder.FenwickTree<ulong>;
+#endif
 
 namespace AtCoder
 {
@@ -24,7 +29,12 @@ namespace AtCoder
             fwLong[0..0].Should().Be(0L);
 
             default(ModID0).SetMod(2);
+
+#if NET6_0_OR_GREATER
+            var fwMod = new FenwickTree<DynamicModInt<ModID0>>(0);
+#else
             var fwMod = new DynamicModIntFenwickTree<ModID0>(0);
+#endif
             fwMod.Sum(0, 0)
                 .Should()
                 .Be(fwMod[0..0])
@@ -89,7 +99,11 @@ namespace AtCoder
         {
             for (int n = 0; n <= 50; n++)
             {
+#if NET6_0_OR_GREATER
+                var fw = new FenwickTree<StaticModInt<Mod11>>(n);
+#else
                 var fw = new StaticModIntFenwickTree<Mod11>(n);
+#endif
                 for (int i = 0; i < n; i++)
                 {
                     fw.Add(i, i * i);
@@ -115,7 +129,11 @@ namespace AtCoder
             default(ModID1).SetMod(11);
             for (int n = 0; n <= 50; n++)
             {
+#if NET6_0_OR_GREATER
+                var fw = new FenwickTree<DynamicModInt<ModID1>>(n);
+#else
                 var fw = new DynamicModIntFenwickTree<ModID1>(n);
+#endif
                 for (int i = 0; i < n; i++)
                 {
                     fw.Add(i, i * i);
