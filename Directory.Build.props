@@ -16,6 +16,7 @@
 
     <PackageOutputPath>$(MSBuildThisFileDirectory)bin\Packages\$(Configuration)\</PackageOutputPath>
 
+	<DisableImplicitNamespaceImports>true</DisableImplicitNamespaceImports>
 
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>

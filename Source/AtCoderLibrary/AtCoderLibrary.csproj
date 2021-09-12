@@ -10,7 +10,6 @@
 		<LangVersion Condition="'$(TargetFramework)' == 'net6.0'">preview</LangVersion>
 
 		<GenericMath Condition="'$(TargetFramework)'!='netstandard2.1' And '$(TargetFramework)'!='netcoreapp3.1'">true</GenericMath>
-		<DisableImplicitNamespaceImports>true</DisableImplicitNamespaceImports>
 		<EnablePreviewFeatures Condition="'$(GenericMath)'=='true'">true</EnablePreviewFeatures>
 
 		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
