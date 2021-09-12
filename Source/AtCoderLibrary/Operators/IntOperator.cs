@@ -4,6 +4,9 @@ using AtCoder.Operators;
 namespace AtCoder
 {
     using static MethodImplOptions;
+#if GENERIC_MATH
+    [System.Obsolete(Internal.Constants.UseGenericMath)]
+#endif
     public readonly struct IntOperator : INumOperator<int>, IShiftOperator<int>
     {
         public int MinValue => int.MinValue;
