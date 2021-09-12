@@ -82,3 +82,6 @@ csharp_prefer_static_local_function = true:silent
 
 # IDE0034: default' ®‚ğ’Pƒ‰»‚·‚é
 csharp_prefer_simple_default_expression = true:silent
+
+# IDE0090: Use 'new(...)'
+csharp_style_implicit_object_creation_when_type_is_apparent = false
