@@ -5,11 +5,6 @@ namespace AtCoder.Operators
     /// <summary>
     /// <typeparamref name="T"/> についての加法演算を定義します。
     /// </summary>
-
-
-#if GENERIC_MATH
-    [System.Obsolete(Internal.Constants.UseGenericMath)]
-#endif
     [IsOperator]
     public interface IAdditionOperator<T>
     {
@@ -36,11 +31,6 @@ namespace AtCoder.Operators
     /// <summary>
     /// <typeparamref name="T"/> についての乗法演算を定義します。
     /// </summary>
-
-
-#if GENERIC_MATH
-    [System.Obsolete(Internal.Constants.UseGenericMath)]
-#endif
     [IsOperator]
     public interface IMultiplicationOperator<T>
     {
@@ -58,11 +48,6 @@ namespace AtCoder.Operators
     /// <summary>
     /// <typeparamref name="T"/> についての除法演算を定義します。
     /// </summary>
-
-
-#if GENERIC_MATH
-    [System.Obsolete(Internal.Constants.UseGenericMath)]
-#endif
     [IsOperator]
     public interface IDivisionOperator<T> : IMultiplicationOperator<T>
     {
@@ -81,11 +66,6 @@ namespace AtCoder.Operators
     /// <summary>
     /// <typeparamref name="T"/> についての加法演算を定義します。
     /// </summary>
-
-
-#if GENERIC_MATH
-    [System.Obsolete(Internal.Constants.UseGenericMath)]
-#endif
     [IsOperator]
     public interface IUnaryNumOperator<T>
     {
@@ -109,19 +89,10 @@ namespace AtCoder.Operators
     /// <summary>
     /// <typeparamref name="T"/> についての四則演算を定義します。
     /// </summary>
-
-
-#if GENERIC_MATH
-    [System.Obsolete(Internal.Constants.UseGenericMath)]
-#endif
     [IsOperator]
     public interface IArithmeticOperator<T> : IAdditionOperator<T>, ISubtractOperator<T>, IMultiplicationOperator<T>, IDivisionOperator<T>, IUnaryNumOperator<T> { }
 
 
-
-#if GENERIC_MATH
-    [System.Obsolete(Internal.Constants.UseGenericMath)]
-#endif
     [IsOperator]
     public interface ICompareOperator<T> : IComparer<T>
     {
@@ -148,10 +119,6 @@ namespace AtCoder.Operators
     }
 
 
-
-#if GENERIC_MATH
-    [System.Obsolete(Internal.Constants.UseGenericMath)]
-#endif
     [IsOperator]
     public interface IMinMaxValue<T>
     {
@@ -166,10 +133,6 @@ namespace AtCoder.Operators
     }
 
 
-
-#if GENERIC_MATH
-    [System.Obsolete(Internal.Constants.UseGenericMath)]
-#endif
     [IsOperator]
     public interface INumOperator<T> : IArithmeticOperator<T>, ICompareOperator<T>, IMinMaxValue<T>
     {
@@ -178,11 +141,6 @@ namespace AtCoder.Operators
     /// <summary>
     /// <typeparamref name="T"/> についてのシフト演算を定義します。
     /// </summary>
-
-
-#if GENERIC_MATH
-    [System.Obsolete(Internal.Constants.UseGenericMath)]
-#endif
     [IsOperator]
     public interface IShiftOperator<T>
     {

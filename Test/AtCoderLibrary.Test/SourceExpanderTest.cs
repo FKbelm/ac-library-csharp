@@ -62,7 +62,7 @@ namespace AtCoder.Embedding
             embedded.SourceFiles.SelectMany(s => s.TypeNames)
                 .Should()
                 .Contain(
-                "AtCoder.Operators.IArithmeticOperator<T>",
+                "AtCoder.Internal.Contract",
                 "AtCoder.Segtree<TValue, TOp>");
         }
 

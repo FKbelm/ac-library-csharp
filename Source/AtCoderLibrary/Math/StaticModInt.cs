@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using AtCoder.Internal;
+#if !GENERIC_MATH
 using AtCoder.Operators;
+#endif
 
 namespace AtCoder
 {
@@ -43,9 +45,7 @@ namespace AtCoder
         public bool IsPrime => true;
     }
 
-#if GENERIC_MATH
-    [System.Obsolete(Internal.Constants.UseGenericMath)]
-#endif
+#if !GENERIC_MATH
     public readonly struct StaticModIntOperator<T> : IArithmeticOperator<StaticModInt<T>>
         where T : struct, IStaticMod
     {
@@ -67,6 +67,7 @@ namespace AtCoder
         [MethodImpl(AggressiveInlining)]
         public StaticModInt<T> Decrement(StaticModInt<T> x) => --x;
     }
+#endif
 
     /// <summary>
     /// 四則演算時に自動で mod を取る整数型。mod の値はコンパイル時に決定している必要があります。

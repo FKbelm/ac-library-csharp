@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using AtCoder.Internal;
+#if !GENERIC_MATH
 using AtCoder.Operators;
+#endif
 
 namespace AtCoder
 {
@@ -25,9 +27,7 @@ namespace AtCoder
     public readonly struct DynamicModID2 : IDynamicModID { }
 
 
-#if GENERIC_MATH
-    [System.Obsolete(Internal.Constants.UseGenericMath)]
-#endif
+#if !GENERIC_MATH
     public readonly struct DynamicModIntOperator<T> : IArithmeticOperator<DynamicModInt<T>> where T : struct
     {
         public DynamicModInt<T> MultiplyIdentity => DynamicModInt<T>.Raw(1);
@@ -48,6 +48,7 @@ namespace AtCoder
         [MethodImpl(AggressiveInlining)]
         public DynamicModInt<T> Decrement(DynamicModInt<T> x) => --x;
     }
+#endif
 
     /// <summary>
     /// 四則演算時に自動で mod を取る整数型。実行時に mod が決まる場合でも使用可能です。
